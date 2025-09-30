@@ -1,0 +1,26 @@
+{
+  "name": "zautocorrect",
+  "version": "0.0.1",
+  "description": "This is my attempt at making a text parser that auto corrects misspelled words",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "homepage": "https://zeshanahmad.dev",
+  "repository": {
+    "url": "https://github.com/zahmadgit/zautocorrect"
+  },
+  "scripts": {
+    "build": "tsup"
+  },
+  "keywords": [
+    "Kinda Cringe",
+    "text parser",
+    "english auto correcter"
+  ],
+  "author": "Zeshan Ahmad(Zahmadgit)",
+  "license": "MIT",
+  "devDependencies": {
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2"
+  }
+}
