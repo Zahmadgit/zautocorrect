@@ -1,0 +1,3 @@
+Going to use this to see if I am even accessing the files correctly
+maybe its a .dic problem?
+hopefully not...

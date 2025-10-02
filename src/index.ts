@@ -1,2 +1,1 @@
-export * from "./testfunction";
-export * from "./types";
+export * from "./readEnglishFile";

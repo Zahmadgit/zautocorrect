@@ -1,10 +1,11 @@
 {
   "name": "zautocorrect",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "This is my attempt at making a text parser that auto corrects misspelled words",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "type": "module",
   "homepage": "https://zeshanahmad.dev",
   "repository": {
     "url": "https://github.com/zahmadgit/zautocorrect"
@@ -20,6 +21,7 @@
   "author": "Zeshan Ahmad(Zahmadgit)",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^24.6.2",
     "tsup": "^8.5.0",
     "typescript": "^5.9.2"
   }
