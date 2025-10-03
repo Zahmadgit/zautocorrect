@@ -17,7 +17,7 @@ const [correctWords, setCorrectWords] = useState([]) \
 const checkWordCorrectHandler = (word) => {\
 let wordsArr = testAutoCorrect(word);\
 setCorrectWords([wordsArr]);\
-};\
+};
 
 //put this inside of a return wrapping jsx\
 <input \
@@ -28,13 +28,13 @@ onChange={(e) => { \
 setInputVal(e.target.value); \
 checkWordCorrectHandler(e.target.value); \
 }} \
-/> \
+/>
 
-{correctWords.map((word) => ( \
+{correctWords.map((word) => (
 
 <div key={word}> \ 
-<p> {word}</p> \ 
+<p> {word}</p> \
 </div> \
 ))} \
-\
+
 --I do not endorse the unoptimizaed handlers and functions inside of the onChange--
