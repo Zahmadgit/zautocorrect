@@ -1,11 +1,12 @@
 import { readFile } from "fs/promises";
+import dictionary from "../assets/en-US.txt";
 //edge cases? what are those lol
 
 async function readEnglishFile() {
   try {
-    const response = await readFile("../assets/en-US.dic", "utf8");
+    // const response = await readFile("./en-US.txt", "utf8");
     //gotta split the words before putting it into a set
-    const words = response.split("\n").map((word: string) => word.trim());
+    const words = dictionary.split("\n").map((word: string) => word.trim());
     const wordDictionarySet = new Set<string>(words);
     // console.log(wordDictionary.has("apple"));
     // const wordDictionaryMap = new Map(Object.entries(words));
@@ -19,10 +20,10 @@ async function readEnglishFile() {
 }
 
 export const testAutoCorrect = async (word: string) => {
-  console.time("readEnglishFile");
+  // console.time("readEnglishFile");
   const englishSet = await readEnglishFile();
-  console.timeEnd("readEnglishFile");
-  console.time("testAutoCorrect");
+  // console.timeEnd("readEnglishFile");
+  // console.time("testAutoCorrect");
   let correctCandidates: string[] = [];
   if (englishSet!.has(word)) {
     console.log(word);
@@ -36,7 +37,7 @@ export const testAutoCorrect = async (word: string) => {
   }
 
   console.log(correctCandidates);
-  console.timeEnd("testAutoCorrect");
+  // console.timeEnd("testAutoCorrect");
   return correctCandidates || word;
 };
 
@@ -61,12 +62,12 @@ function levenshteinDistance(a: string, b: string) {
   return matrix[b.length][a.length];
 }
 
-const testWord1 = "this";
-const testWord2 = "wha's";
-const testWord3 = "maybda";
-const testWord4 = "nit";
+// const testWord1 = "this";
+// const testWord2 = "wha's";
+// const testWord3 = "maybda";
+// const testWord4 = "nit";
 
-testAutoCorrect(testWord2);
+// testAutoCorrect(testWord2);
 // testAutoCorrect(englishSet, testWord2);
 // testAutoCorrect(englishSet, testWord3);
 // testAutoCorrect(englishSet, testWord4);

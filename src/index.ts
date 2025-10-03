@@ -1,1 +1,1 @@
-export * from "./readEnglishFile";
+export * from "./testAutoCorrect";
