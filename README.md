@@ -29,12 +29,13 @@ setInputVal(e.target.value); \
 checkWordCorrectHandler(e.target.value); \
 }} \
 />
-
+/\*
 {correctWords.map((word) => (
 
 <div key={word}> 
 <p> {word}</p> 
 </div> 
 ))}
+*/
 
 --I do not endorse the unoptimizaed handlers and functions inside of the onChange--
