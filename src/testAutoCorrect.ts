@@ -1,10 +1,10 @@
-import { readFile } from "fs/promises";
+// import { readFile } from "fs/promises";
 import dictionary from "../assets/en-US.txt";
 //edge cases? what are those lol
 
-async function readEnglishFile() {
+export async function readEnglishFile() {
   try {
-    // const response = await readFile("./en-US.txt", "utf8");
+    // const response = await readFile("../assets/en-US", "utf8");
     //gotta split the words before putting it into a set
     const words = dictionary.split("\n").map((word: string) => word.trim());
     const wordDictionarySet = new Set<string>(words);
@@ -19,18 +19,18 @@ async function readEnglishFile() {
   }
 }
 
-export const testAutoCorrect = async (word: string) => {
+export const testAutoCorrect = (dictionary: Set<string>, word: string) => {
   // console.time("readEnglishFile");
-  const englishSet = await readEnglishFile();
+  // const englishSet = await readEnglishFile();
   // console.timeEnd("readEnglishFile");
   // console.time("testAutoCorrect");
   let correctCandidates: string[] = [];
-  if (englishSet!.has(word)) {
+  if (dictionary!.has(word)) {
     console.log(word);
     return word;
   }
   //limit the word change to 1 because otherwise the amount of differences is massive for examples like wha's
-  for (const dictWord of englishSet!) {
+  for (const dictWord of dictionary!) {
     if (levenshteinDistance(word, dictWord) <= 1) {
       correctCandidates.push(dictWord);
     }
