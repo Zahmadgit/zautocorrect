@@ -1,6 +1,6 @@
 {
   "name": "zautocorrect",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "This is my attempt at making a text parser that auto corrects misspelled words",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
