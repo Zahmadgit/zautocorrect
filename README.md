@@ -1,6 +1,6 @@
 # did I really need to make a auto corrector library? yep!
 
-0. Install the package as a dependency for version 0.1.0
+0. Install the package as a dependency for version 0.1.2
 
 ```
 npm install zautocorrect
@@ -119,6 +119,87 @@ const checkWordCorrectHandler = (word) => {
 
     )
 
+
+```
+
+**React Native Expo Version**\
+Usage:
+
+1. Must of it is the same, although you do need to consider expos cli as well as the React Native core components, just going to copy/paste the entire snippet.
+
+```
+import React, { useEffect, useRef, useState } from "react";
+import { FlatList, Text, TextInput, View } from "react-native";
+import { readEnglishFile, testAutoCorrect } from "zautocorrect";
+
+export default function Index() {
+  const [dictionarySet, setDictionarySet] = useState<any>(null);
+  const [correctWords, setCorrectWords] = useState<string[]>([]);
+  const [inputValue, setInputValue] = useState("");
+  const wordIndex = useRef(0);
+
+  //effect to load dictionary, cant have async await in top code or outside the function
+  useEffect(() => {
+    const loadDictionary = async () => {
+      const newSet = await readEnglishFile();
+      setDictionarySet(newSet);
+    };
+    loadDictionary();
+  }, []);
+
+  const checkWordCorrectHandler = (text: string) => {
+    //safe programming~ incase dictionary isnt rdy yet
+    if (!dictionarySet) return;
+
+    const completeWordsArr = text.split("");
+    let wordArrForTestAutoCorrect: string[] = [];
+
+    for (let i = wordIndex.current - 1; i >= 0; --i) {
+      if (completeWordsArr[i] === " ") {
+        break;
+      }
+      wordArrForTestAutoCorrect.push(completeWordsArr[i]);
+    }
+
+    const wordForTestAutoCorrect = wordArrForTestAutoCorrect.reverse().join("");
+    const wordsArr = testAutoCorrect(dictionarySet, wordForTestAutoCorrect);
+
+    setCorrectWords([wordsArr]);
+  };
+
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 16,
+      }}
+    >
+      <TextInput
+        style={{ width: "50%" }}
+        value={inputValue}
+        onChangeText={(text) => {
+          setInputValue(text);
+          checkWordCorrectHandler(text);
+        }}
+        placeholder="Let's test zautocorrect"
+        onSelectionChange={(e) => {
+          //track caret index (like selectionStart in web)
+          wordIndex.current = e.nativeEvent.selection.start;
+        }}
+      />
+
+      <FlatList
+        data={correctWords}
+        keyExtractor={(_, idx) => idx.toString()}
+        renderItem={({ item }) => (
+          <Text style={{ marginTop: 8, fontSize: 16 }}>{item}</Text>
+        )}
+      />
+    </View>
+  );
+}
 
 ```
 
